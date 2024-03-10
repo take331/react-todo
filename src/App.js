@@ -19,9 +19,16 @@ function App() {
     todoNameRef.current.value = null;
   }
 
+  const toggleTodo = (id) => {
+    const newTodos = [...todos];
+    const todo = newTodos.find((todo) => todo.id === id);
+    todo.completed = !todo.completed;
+    setTodos(newTodos);
+  }
+
   return (
     <div className="App">
-      <TodoList todos={todos}/>
+      <TodoList todos={todos} toggleTodo={toggleTodo} />
       <input type="text" ref={todoNameRef}/>
       <button onClick={handleAddTodo}>Add Task</button>
       <button>Clear Task</button>
